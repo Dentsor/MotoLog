@@ -21,7 +21,7 @@ class ConsumptionWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("${fuelData.avgConsumptionAllTime} (all time)"),
-            Text("${fuelData.avgConsumptionLately} (12 months)"),
+            // Text("${fuelData.avgConsumptionLately} (12 months)"),
           ],
         ),
       ]),

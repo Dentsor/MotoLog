@@ -1,17 +1,24 @@
-class Fuel {
-  double? avgConsumptionAllTime;
-  double? avgConsumptionLately;
-  double? avgRefillAmount;
-  String? refillUnit;
-  String? avgBestRefuelDay;
-  double? avgBestRefuelPrice;
+import 'package:motolog/models/refill.dart';
 
-  Fuel(
-    double this.avgConsumptionAllTime,
-    double this.avgConsumptionLately,
-    double this.avgRefillAmount,
-    String this.refillUnit,
-    String this.avgBestRefuelDay,
-    double this.avgBestRefuelPrice,
-  );
+class Fuel {
+  double avgConsumptionAllTime;
+  double avgRefillAmount;
+  String refillUnit;
+  String avgBestRefuelDay;
+  double avgBestRefuelPrice;
+
+  Fuel({
+    required this.avgConsumptionAllTime,
+    required this.avgRefillAmount,
+    required this.refillUnit,
+    required this.avgBestRefuelDay,
+    required this.avgBestRefuelPrice,
+  });
+
+  Fuel.calculate(List<Refill> refills)
+    : avgConsumptionAllTime = (refills.sublist(1).map((e) => e.quantity).reduce((first, second) => first + second)) / (refills.last.mileage - refills.first.mileage),
+      avgRefillAmount = refills.map((e) => e.quantity).reduce((value, element) => value + element) / refills.length,
+      refillUnit = refills.first.unit,
+      avgBestRefuelDay = "Tuesday",
+      avgBestRefuelPrice = 12.21;
 }

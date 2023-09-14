@@ -36,7 +36,7 @@ class RefillsWidget extends StatelessWidget {
                     "Unit Price",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text("${entry.unitPrice} ${entry.currency}/${entry.unit}"),
+                  Text("${entry.paid / entry.quantity} ${entry.currency}/${entry.unit}"),
                 ]),
                 TableRow(children: [
                   const Text(
@@ -49,7 +49,7 @@ class RefillsWidget extends StatelessWidget {
               defaultColumnWidth: const IntrinsicColumnWidth(),
             ),
           ]),
-          Text("${entry.paid?.toStringAsFixed(2)} ${entry.currency}"),
+          Text("${entry.paid.toStringAsFixed(2)} ${entry.currency}"),
         ])
       ]);
       refillRows.add(t);
