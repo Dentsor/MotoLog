@@ -1,0 +1,30 @@
+@startuml 'database_schema
+
+' Zero or One:  |o--
+' Exactly One:  ||--
+' Zero or Many: }o--
+' One or Many:  }|--
+
+entity Vehicle {
+  id: INTEGER
+  type: TEXT
+  name: TEXT
+  manufacturer: TEXT
+  model: TEXT
+  registration: TEXT
+  year: INTEGER
+}
+
+entity Refuel {
+  id: INTEGER
+  vehicleId: INTEGER
+  station: TEXT
+  dateTime: TEXT
+  quantity: REAL
+  paid: REAL
+  distance: REAL
+}
+
+Refuel }o..|| Vehicle
+
+@enduml
