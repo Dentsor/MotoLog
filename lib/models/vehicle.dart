@@ -1,32 +1,29 @@
 import 'package:motolog/models/database_model.dart';
 
-class Bike extends DatabaseModel {
+class Vehicle extends DatabaseModel {
   int? id;
   String name;
   String manufacturer;
   String model;
   String registration;
   int year;
-  int mileage;
 
-  Bike({
+  Vehicle({
     this.id,
     required this.name,
     required this.manufacturer,
     required this.model,
     required this.registration,
     required this.year,
-    required this.mileage,
   });
 
-  Bike.fromMap(Map<String, dynamic> res)
+  Vehicle.fromMap(Map<String, dynamic> res)
     : id = res['id'],
       name = res['name'],
       manufacturer = res['manufacturer'],
       model = res['model'],
       registration = res['registration'],
-      year = res['year'],
-      mileage = res['mileage'];
+      year = res['year'];
 
   @override
   Map<String, Object?> toMap() {
@@ -37,12 +34,11 @@ class Bike extends DatabaseModel {
       'model': model,
       'registration': registration,
       'year': year,
-      'mileage': mileage,
     };
   }
 
   @override
   String toString() {
-    return 'Bike${toMap()}';
+    return 'Vehicle${toMap()}';
   }
 }

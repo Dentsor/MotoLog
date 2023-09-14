@@ -16,9 +16,9 @@ class Fuel {
   });
 
   Fuel.calculate(List<Refill> refills)
-    : avgConsumptionAllTime = (refills.sublist(1).map((e) => e.quantity).reduce((first, second) => first + second)) / (refills.last.mileage - refills.first.mileage),
+    : avgConsumptionAllTime = (refills.sublist(1).map((e) => e.quantity).reduce((first, second) => first + second)) / (refills.last.distance - refills.first.distance),
       avgRefillAmount = refills.map((e) => e.quantity).reduce((value, element) => value + element) / refills.length,
-      refillUnit = refills.first.unit,
+      refillUnit = Refill.fuelUnit,
       avgBestRefuelDay = "Tuesday",
       avgBestRefuelPrice = 12.21;
 }

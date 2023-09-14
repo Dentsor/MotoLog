@@ -18,7 +18,7 @@ class RefillsWidget extends StatelessWidget {
           const Icon(Icons.location_pin),
           Column(children: [
             Text(
-              "${entry.station}",
+              entry.station,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             Table(
@@ -36,20 +36,20 @@ class RefillsWidget extends StatelessWidget {
                     "Unit Price",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text("${entry.paid / entry.quantity} ${entry.currency}/${entry.unit}"),
+                  Text("${entry.paid / entry.quantity} ${Refill.currency}/${Refill.fuelUnit}"),
                 ]),
                 TableRow(children: [
                   const Text(
                     "Quantity",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text("${entry.quantity} ${entry.unit}"),
+                  Text("${entry.quantity} ${Refill.fuelUnit}"),
                 ]),
               ],
               defaultColumnWidth: const IntrinsicColumnWidth(),
             ),
           ]),
-          Text("${entry.paid.toStringAsFixed(2)} ${entry.currency}"),
+          Text("${entry.paid.toStringAsFixed(2)} ${Refill.currency}"),
         ])
       ]);
       refillRows.add(t);

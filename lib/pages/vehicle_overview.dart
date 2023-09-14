@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:motolog/database/bike_db_helper.dart';
+import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refill_db_helper.dart';
-import 'package:motolog/models/bike.dart';
+import 'package:motolog/models/vehicle.dart';
 import 'package:motolog/models/database_model.dart';
 import 'package:motolog/models/fuel.dart';
 import 'package:motolog/models/refill.dart';
@@ -46,7 +46,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
 
   Future<Map<String, List<DatabaseModel>>> retrieveModels() async {
     return {
-      'bikes': await dbHelper.retrieveBikes(),
+      'vehicles': await dbHelper.retrieveVehicles(),
       'refills': await dbHelper.retrieveRefills(),
     };
   }
@@ -58,7 +58,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
       builder: (BuildContext context,
           AsyncSnapshot<Map<String, List<DatabaseModel>>> snapshot) {
         if (snapshot.hasData) {
-          List<Bike> bikes = snapshot.data!['bikes']!.cast();
+          List<Vehicle> vehicles = snapshot.data!['vehicles']!.cast();
           List<Refill> refills = snapshot.data!['refills']!.cast();
           Fuel fuel = Fuel.calculate(refills);
           return Scaffold(
@@ -70,7 +70,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  VehicleCard(bikeData: bikes.first),
+                  VehicleCard(vehicle: vehicles.first, latestRefill: refills.last),
                   ConsumptionWidget(fuelData: fuel),
                   RefillsWidget(refillData: refills),
                   Row(children: [

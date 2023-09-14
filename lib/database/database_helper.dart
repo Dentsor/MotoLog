@@ -22,8 +22,6 @@ class DatabaseHelper {
           db.execute(tableSchema);
         }
 
-        print(sampleData);
-
         for(var tableSamples in sampleData.entries) {
           for(var model in tableSamples.value) {
             db.insert(tableSamples.key, model.toMap());

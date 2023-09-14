@@ -1,14 +1,16 @@
 import 'package:motolog/models/database_model.dart';
 
 class Refill extends DatabaseModel {
+  static const currency = 'NOK';
+  static const fuelUnit = 'Litre';
+  static const distanceUnit = 'km';
+
   int? id;
   String station;
-  String datetime;
+  DateTime datetime;
   double quantity;
   double paid;
-  String currency;
-  String unit;
-  int mileage;
+  double distance;
 
   Refill({
     this.id,
@@ -16,32 +18,26 @@ class Refill extends DatabaseModel {
     required this.datetime,
     required this.quantity,
     required this.paid,
-    required this.currency,
-    required this.unit,
-    required this.mileage,
+    required this.distance,
   });
 
   Refill.fromMap(Map<String, dynamic> res)
     : id = res['id'],
       station = res['station'],
-      datetime = res['datetime'],
+      datetime = DateTime.fromMillisecondsSinceEpoch(res['datetime'] * Duration.millisecondsPerSecond),
       quantity = res['quantity'],
       paid = res['paid'],
-      currency = res['currency'],
-      unit = res['unit'],
-      mileage = res['mileage'];
+      distance = res['distance'];
 
   @override
   Map<String, Object?> toMap() {
     return {
       'id': id,
       'station': station,
-      'datetime': datetime,
+      'datetime': datetime.millisecondsSinceEpoch ~/ Duration.millisecondsPerSecond,
       'quantity': quantity,
       'paid': paid,
-      'currency': currency,
-      'unit': unit,
-      'mileage': mileage,
+      'distance': distance,
     };
   }
 

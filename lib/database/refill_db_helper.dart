@@ -6,21 +6,19 @@ extension RefillDBHelper on DatabaseHelper {
   static const tableName = 'refill';
   static const tableSchema = """
               CREATE TABLE $tableName(
-                id INTEGER PRIMARY KEY,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 station TEXT,
-                datetime TEXT,
+                datetime INTEGER,
                 quantity REAL,
                 paid REAL,
-                currency TEXT,
-                unit TEXT,
-                mileage INTEGER
+                distance REAL
               )
             """;
   static List<DatabaseModel> sampleData = [
-    Refill(station: 'Circle K', datetime: '2023-08-28 10:32', quantity: 19.67, paid: 84.58, currency: 'NOK', unit: 'Litre', mileage: 128000),
-    Refill(station: 'Shell', datetime: '2023-08-28 18:47', quantity: 21.82, paid: 294.57, currency: 'NOK', unit: 'Litre', mileage: 130000),
-    Refill(station: 'YX', datetime: '2023-09-03 16:47', quantity: 23.99, paid: 151.86, currency: 'NOK', unit: 'Litre', mileage: 131000),
-    Refill(station: 'Uno X', datetime: '2023-09-05 12:43', quantity: 21.07, paid: 156.76, currency: 'NOK', unit: 'Litre', mileage: 132000),
+    Refill(station: 'Circle K', datetime: DateTime(2023, 08, 28, 10, 32), quantity: 19.67, paid: 84.58, distance: 128000),
+    Refill(station: 'Shell', datetime: DateTime(2023, 08, 28, 18, 47), quantity: 21.82, paid: 294.57, distance: 130000),
+    Refill(station: 'YX', datetime: DateTime(2023, 09, 03, 16, 47), quantity: 23.99, paid: 151.86, distance: 131000),
+    Refill(station: 'Uno X', datetime: DateTime(2023, 09, 05, 12, 43), quantity: 21.07, paid: 156.76, distance: 132000),
   ];
 
   Future<int> insertRefill(Refill instance) async {

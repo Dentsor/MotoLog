@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motolog/database/bike_db_helper.dart';
+import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refill_db_helper.dart';
 import 'package:motolog/pages/vehicle_overview.dart';
@@ -14,16 +14,16 @@ void main() async {
   await dbHelper.initDB(
     version: 1,
     tableSchemas: [
-      BikeDBHelper.tableSchema,
+      VehicleDBHelper.tableSchema,
       RefillDBHelper.tableSchema,
     ],
     sampleData: {
-      BikeDBHelper.tableName: BikeDBHelper.sampleData,
+      VehicleDBHelper.tableName: VehicleDBHelper.sampleData,
       RefillDBHelper.tableName: RefillDBHelper.sampleData,
     },
   );
 
-  print(await dbHelper.retrieveBikes());
+  print(await dbHelper.retrieveVehicles());
 
   runApp(const MotoLog());
 }
