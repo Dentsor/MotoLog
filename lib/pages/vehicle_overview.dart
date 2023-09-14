@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
-import 'package:motolog/database/refill_db_helper.dart';
+import 'package:motolog/database/refuel_db_helper.dart';
 import 'package:motolog/models/vehicle.dart';
 import 'package:motolog/models/database_model.dart';
-import 'package:motolog/models/fuel.dart';
-import 'package:motolog/models/refill.dart';
-import 'package:motolog/pages/add_refill.dart';
+import 'package:motolog/utils/fuel.dart';
+import 'package:motolog/models/refuel.dart';
+import 'package:motolog/pages/refuel_add.dart';
+import 'package:motolog/pages/refuel_history.dart';
 import 'package:motolog/widgets/consumption_widget.dart';
-import 'package:motolog/widgets/refill_widget.dart';
 import 'package:motolog/widgets/vehicle_card.dart';
 
 class VehicleOverviewPage extends StatefulWidget {
@@ -22,14 +22,16 @@ class VehicleOverviewPage extends StatefulWidget {
 }
 
 class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
-  late DatabaseHelper dbHelper = DatabaseHelper();
-
-  // Fuel fuel = Fuel(0.3346, 0.3674, 8.6, "Litre", "Thursday", 22.07);
+  DatabaseHelper dbHelper = DatabaseHelper();
 
   void onPressed() {
     if (kDebugMode) {
       print("pressed");
     }
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => RefuelHistoryPage(title: widget.title)));
   }
 
   void onClicked() {
@@ -39,26 +41,20 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => AddRefillPage(title: widget.title)));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    dbHelper = DatabaseHelper();
-    setState(() {});
+            builder: (context) => RefuelAddPage(title: widget.title)));
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.wait([dbHelper.retrieveVehicles(), dbHelper.retrieveRefills()]),
+      future: Future.wait([dbHelper.retrieveVehicles(), dbHelper.retrieveRefuels()]),
       builder: (BuildContext context,
           AsyncSnapshot<List<List<DatabaseModel>>> snapshot) {
         if (snapshot.hasData) {
           List<Vehicle> vehicles = snapshot.data![0].cast();
-          List<Refill> refills = snapshot.data![1].cast();
-          Fuel fuel = Fuel.calculate(refills);
+          List<Refuel> refuels = snapshot.data![1].cast();
+          Fuel fuel = Fuel.calculate(refuels);
+
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -68,9 +64,8 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  VehicleCard(vehicle: vehicles.first, latestRefill: refills.last),
+                  VehicleCard(vehicle: vehicles.first, latestRefuel: refuels.last),
                   ConsumptionWidget(fuelData: fuel),
-                  RefillsWidget(refillData: refills),
                   Row(children: [
                     TextButton.icon(
                       onPressed: onPressed,

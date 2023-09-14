@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motolog/models/fuel.dart';
+import 'package:motolog/utils/fuel.dart';
 
 class ConsumptionWidget extends StatelessWidget {
   const ConsumptionWidget({
@@ -20,8 +20,8 @@ class ConsumptionWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("${fuelData.avgConsumptionAllTime} (all time)"),
-            // Text("${fuelData.avgConsumptionLately} (12 months)"),
+            Text("${fuelData.avgConsumptionAllTime.toStringAsFixed(2)} (all time)"),
+            // Text("${fuelData.avgConsumptionLately.toStringAsFixed(2)} (12 months)"),
           ],
         ),
       ]),
@@ -34,10 +34,10 @@ class ConsumptionWidget extends StatelessWidget {
       ]),
       TableRow(children: [
         const Text(
-          "Avg. Refill Amount",
+          "Avg. Refuel Quantity",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text("${fuelData.avgRefillAmount} ${fuelData.refillUnit}"),
+        Text("${fuelData.avgRefuelQuantity.toStringAsFixed(2)} ${fuelData.refuelUnit}"),
       ]),
     ];
 

@@ -1,30 +1,33 @@
 import 'package:motolog/models/database_model.dart';
 
-class Refill extends DatabaseModel {
+class Refuel extends DatabaseModel {
   static const currency = 'NOK';
   static const fuelUnit = 'Litre';
   static const distanceUnit = 'km';
 
   int? id;
+  int vehicleId;
   String station;
-  DateTime datetime;
+  DateTime dateTime;
   double quantity;
   double paid;
   double distance;
 
-  Refill({
+  Refuel({
     this.id,
+    required this.vehicleId,
     required this.station,
-    required this.datetime,
+    required this.dateTime,
     required this.quantity,
     required this.paid,
     required this.distance,
   });
 
-  Refill.fromMap(Map<String, dynamic> res)
+  Refuel.fromMap(Map<String, dynamic> res)
     : id = res['id'],
+      vehicleId = res['vehicleId'],
       station = res['station'],
-      datetime = DateTime.fromMillisecondsSinceEpoch(res['datetime'] * Duration.millisecondsPerSecond),
+      dateTime = DateTime.fromMillisecondsSinceEpoch(res['dateTime'] * Duration.millisecondsPerSecond),
       quantity = res['quantity'],
       paid = res['paid'],
       distance = res['distance'];
@@ -33,8 +36,9 @@ class Refill extends DatabaseModel {
   Map<String, Object?> toMap() {
     return {
       'id': id,
+      'vehicleId': vehicleId,
       'station': station,
-      'datetime': datetime.millisecondsSinceEpoch ~/ Duration.millisecondsPerSecond,
+      'datetime': dateTime.millisecondsSinceEpoch ~/ Duration.millisecondsPerSecond,
       'quantity': quantity,
       'paid': paid,
       'distance': distance,
@@ -43,6 +47,6 @@ class Refill extends DatabaseModel {
 
   @override
   String toString() {
-    return 'Refill${toMap()}';
+    return 'Refuel${toMap()}';
   }
 }

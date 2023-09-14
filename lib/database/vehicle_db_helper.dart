@@ -1,12 +1,12 @@
 import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/models/vehicle.dart';
-import 'package:motolog/models/database_model.dart';
 
 extension VehicleDBHelper on DatabaseHelper {
   static const tableName = 'vehicles';
   static const tableSchema = """
               CREATE TABLE $tableName(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                type TEXT,
                 name TEXT,
                 manufacturer TEXT,
                 model TEXT,
@@ -15,7 +15,7 @@ extension VehicleDBHelper on DatabaseHelper {
               )
             """;
   static List<Vehicle> sampleData = [
-    Vehicle(name: 'Ragna', manufacturer: 'BMW', model: 'F650GS', registration: 'AB1234', year: 2018),
+    Vehicle(type: 'motorcycle', name: 'Ragna', manufacturer: 'BMW', model: 'F650GS', registration: 'AB1234', year: 2018),
   ];
 
   Future<int> insertVehicle(Vehicle instance) async {

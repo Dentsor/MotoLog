@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
-import 'package:motolog/database/refill_db_helper.dart';
+import 'package:motolog/database/refuel_db_helper.dart';
 import 'package:motolog/pages/vehicle_overview.dart';
 
 import 'package:flutter/widgets.dart';
@@ -16,17 +16,17 @@ void main() async {
     version: 1,
     tableSchemas: [
       VehicleDBHelper.tableSchema,
-      RefillDBHelper.tableSchema,
+      RefuelDBHelper.tableSchema,
     ],
     sampleData: {
       VehicleDBHelper.tableName: VehicleDBHelper.sampleData,
-      RefillDBHelper.tableName: RefillDBHelper.sampleData,
+      RefuelDBHelper.tableName: RefuelDBHelper.sampleData,
     },
   );
 
   if (kDebugMode) {
     print(await dbHelper.retrieveVehicles());
-    print(await dbHelper.retrieveRefills());
+    print(await dbHelper.retrieveRefuels());
   }
 
   runApp(const MotoLog());

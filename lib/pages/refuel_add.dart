@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AddRefillPage extends StatefulWidget {
-  const AddRefillPage({super.key, required this.title});
+class RefuelAddPage extends StatefulWidget {
+  const RefuelAddPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<AddRefillPage> createState() => _AddRefillPageState();
+  State<RefuelAddPage> createState() => _RefuelAddPageState();
 }
 
-class _AddRefillPageState extends State<AddRefillPage> {
+class _RefuelAddPageState extends State<RefuelAddPage> {
 
   @override
   Widget build(BuildContext context) {

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:motolog/models/vehicle.dart';
-import 'package:motolog/models/refill.dart';
+import 'package:motolog/models/refuel.dart';
 
 class VehicleCard extends StatelessWidget {
   const VehicleCard({
     super.key,
     required this.vehicle,
-    required this.latestRefill,
+    required this.latestRefuel,
   });
 
   final Vehicle vehicle;
-  final Refill latestRefill;
+  final Refuel latestRefuel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class VehicleCard extends StatelessWidget {
         const Icon(Icons.motorcycle),
         Column(
           children: <Widget>[
-            Text("${vehicle.name}"),
+            Text(vehicle.name),
             Text(
-              "${vehicle.registration}, ${vehicle.year}, ${latestRefill.distance} ${Refill.distanceUnit}",
+              "${vehicle.registration}, ${vehicle.year}, ${latestRefuel.distance} ${Refuel.distanceUnit}",
             ),
           ],
         ),
