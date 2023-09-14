@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
@@ -23,7 +24,10 @@ void main() async {
     },
   );
 
-  print(await dbHelper.retrieveVehicles());
+  if (kDebugMode) {
+    print(await dbHelper.retrieveVehicles());
+    print(await dbHelper.retrieveRefills());
+  }
 
   runApp(const MotoLog());
 }

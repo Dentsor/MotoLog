@@ -14,7 +14,7 @@ extension VehicleDBHelper on DatabaseHelper {
                 year INTEGER
               )
             """;
-  static List<DatabaseModel> sampleData = [
+  static List<Vehicle> sampleData = [
     Vehicle(name: 'Ragna', manufacturer: 'BMW', model: 'F650GS', registration: 'AB1234', year: 2018),
   ];
 

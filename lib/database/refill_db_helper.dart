@@ -14,7 +14,7 @@ extension RefillDBHelper on DatabaseHelper {
                 distance REAL
               )
             """;
-  static List<DatabaseModel> sampleData = [
+  static List<Refill> sampleData = [
     Refill(station: 'Circle K', datetime: DateTime(2023, 08, 28, 10, 32), quantity: 19.67, paid: 84.58, distance: 128000),
     Refill(station: 'Shell', datetime: DateTime(2023, 08, 28, 18, 47), quantity: 21.82, paid: 294.57, distance: 130000),
     Refill(station: 'YX', datetime: DateTime(2023, 09, 03, 16, 47), quantity: 23.99, paid: 151.86, distance: 131000),

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
@@ -26,11 +27,15 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
   // Fuel fuel = Fuel(0.3346, 0.3674, 8.6, "Litre", "Thursday", 22.07);
 
   void onPressed() {
-    print("pressed");
+    if (kDebugMode) {
+      print("pressed");
+    }
   }
 
   void onClicked() {
-    print("clicked");
+    if (kDebugMode) {
+      print("clicked");
+    }
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -44,22 +49,15 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
     setState(() {});
   }
 
-  Future<Map<String, List<DatabaseModel>>> retrieveModels() async {
-    return {
-      'vehicles': await dbHelper.retrieveVehicles(),
-      'refills': await dbHelper.retrieveRefills(),
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: retrieveModels(),
+      future: Future.wait([dbHelper.retrieveVehicles(), dbHelper.retrieveRefills()]),
       builder: (BuildContext context,
-          AsyncSnapshot<Map<String, List<DatabaseModel>>> snapshot) {
+          AsyncSnapshot<List<List<DatabaseModel>>> snapshot) {
         if (snapshot.hasData) {
-          List<Vehicle> vehicles = snapshot.data!['vehicles']!.cast();
-          List<Refill> refills = snapshot.data!['refills']!.cast();
+          List<Vehicle> vehicles = snapshot.data![0].cast();
+          List<Refill> refills = snapshot.data![1].cast();
           Fuel fuel = Fuel.calculate(refills);
           return Scaffold(
             appBar: AppBar(
