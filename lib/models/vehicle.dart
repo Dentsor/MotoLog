@@ -1,6 +1,6 @@
-import 'package:motolog/models/database_model.dart';
+import 'package:motolog/models/data_model.dart';
 
-class Vehicle extends DatabaseModel {
+class Vehicle extends DataModel {
   int? id;
   String type;
   String name;

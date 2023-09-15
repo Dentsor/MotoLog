@@ -1,3 +1,3 @@
-abstract class DatabaseModel {
+abstract class DataModel {
   Map<String, Object?> toMap();
 }

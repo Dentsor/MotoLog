@@ -1,4 +1,4 @@
-import 'package:motolog/models/database_model.dart';
+import 'package:motolog/models/data_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -13,7 +13,7 @@ class DatabaseHelper {
     return _databaseHelper;
   }
 
-  Future<void> initDB({required int version, required List<String> tableSchemas, required Map<String, List<DatabaseModel>> sampleData}) async {
+  Future<void> initDB({required int version, required List<String> tableSchemas, required Map<String, List<DataModel>> sampleData}) async {
     String path = await getDatabasesPath();
     db = await openDatabase(
       join(path, 'motolog_database.db'),

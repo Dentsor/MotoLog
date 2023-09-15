@@ -1,6 +1,6 @@
-import 'package:motolog/models/database_model.dart';
+import 'package:motolog/models/data_model.dart';
 
-class Refuel extends DatabaseModel {
+class Refuel extends DataModel {
   static const currency = 'NOK';
   static const fuelUnit = 'Litre';
   static const distanceUnit = 'km';

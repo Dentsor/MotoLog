@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:motolog/database/vehicle_db_helper.dart';
 import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refuel_db_helper.dart';
-import 'package:motolog/pages/vehicle_overview.dart';
+import 'package:motolog/models/vehicle.dart';
+import 'package:motolog/pages/vehicle_overview_page.dart';
 
 import 'package:flutter/widgets.dart';
 
@@ -44,7 +45,15 @@ class MotoLog extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const VehicleOverviewPage(title: 'Vehicle Overview'),
+      home: FutureBuilder(
+          future: DatabaseHelper().retrieveVehicles(),
+          builder:
+              (BuildContext context, AsyncSnapshot<List<Vehicle>> snapshot) {
+            if (snapshot.hasData) {
+              return VehicleOverviewPage(vehicle: snapshot.data!.first);
+            }
+            return const CircularProgressIndicator();
+          }),
     );
   }
 }
