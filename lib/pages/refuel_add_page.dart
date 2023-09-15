@@ -80,7 +80,7 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Column(
               children: <Widget>[
                 DateTimeFormField(
@@ -169,9 +169,10 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: ElevatedButton(
+                  child: ElevatedButton.icon(
+                    icon: const Icon(Icons.save),
                     onPressed: onSubmit,
-                    child: const Text('Save'),
+                    label: const Text('Save'),
                   ),
                 )
               ],

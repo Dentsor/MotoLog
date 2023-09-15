@@ -56,25 +56,32 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
               backgroundColor: Theme.of(context).colorScheme.inversePrimary,
               title: Text(widget.vehicle.name),
             ),
-            body: Center(
+            body: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   VehicleCard(
                       vehicle: widget.vehicle, latestRefuel: refuels.last),
                   ConsumptionWidget(fuelData: fuel),
-                  Row(children: [
-                    TextButton.icon(
-                      onPressed: onPressed,
-                      icon: const Icon(Icons.list),
-                      label: const Text("History"),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        ElevatedButton.icon(
+                          onPressed: onPressed,
+                          icon: const Icon(Icons.list),
+                          label: const Text("History"),
+                        ),
+                        ElevatedButton.icon(
+                          onPressed: onClicked,
+                          icon: const Icon(Icons.add),
+                          label: const Text("Add"),
+                        ),
+                      ],
                     ),
-                    TextButton.icon(
-                      onPressed: onClicked,
-                      icon: const Icon(Icons.add),
-                      label: const Text("Add"),
-                    ),
-                  ]),
+                  ),
                 ],
               ),
             ),

@@ -14,18 +14,40 @@ class VehicleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        const Icon(Icons.motorcycle),
-        Column(
-          children: <Widget>[
-            Text(vehicle.name),
-            Text(
-              "${vehicle.registration}, ${vehicle.year}, ${latestRefuel.distance} ${Refuel.distanceUnit}",
-            ),
-          ],
-        ),
-      ],
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Theme.of(context).primaryColor),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Icon(
+            switch (vehicle.type) {
+              'motorcycle' => Icons.motorcycle,
+              'car' => Icons.directions_car,
+              'electric_bike' => Icons.electric_bike,
+              'bike' => Icons.pedal_bike,
+              'skateboard' => Icons.skateboarding,
+              String() => Icons.navigation,
+            },
+            size: 48,
+          ),
+          Column(
+            children: <Widget>[
+              Text(
+                vehicle.name,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+                textScaleFactor: 1.4,
+              ),
+              Text(
+                "${vehicle.registration}, ${vehicle.year}, ${latestRefuel.distance} ${Refuel.distanceUnit}",
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

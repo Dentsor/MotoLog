@@ -33,10 +33,9 @@ class _RefuelHistoryPageState extends State<RefuelHistoryPage> {
               body: Center(
                 child: SingleChildScrollView(
                   child: Table(
-                    children: [
-                      for (var refuel in refuels)
-                        TableRow(children: [RefuelCard(refuel: refuel)])
-                    ],
+                    children: refuels
+                        .map((e) => TableRow(children: [RefuelCard(refuel: e)]))
+                        .toList(),
                   ),
                 ),
               ),

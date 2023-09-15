@@ -20,7 +20,9 @@ class ConsumptionWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("${fuelData.avgConsumptionAllTime.toStringAsFixed(2)} (all time)"),
+            Text(
+              "${fuelData.avgConsumptionAllTime.toStringAsFixed(2)} (all time)",
+            ),
             // Text("${fuelData.avgConsumptionLately.toStringAsFixed(2)} (12 months)"),
           ],
         ),
@@ -30,14 +32,18 @@ class ConsumptionWidget extends StatelessWidget {
           "Best fueling day on average:",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text("${fuelData.avgBestRefuelDay} (${fuelData.avgBestRefuelPrice})")
+        Text(
+          "${fuelData.avgBestRefuelDay} (${fuelData.avgBestRefuelPrice})",
+        )
       ]),
       TableRow(children: [
         const Text(
           "Avg. Refuel Quantity",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text("${fuelData.avgRefuelQuantity.toStringAsFixed(2)} ${fuelData.refuelUnit}"),
+        Text(
+          "${fuelData.avgRefuelQuantity.toStringAsFixed(2)} ${fuelData.refuelUnit}",
+        ),
       ]),
     ];
 
