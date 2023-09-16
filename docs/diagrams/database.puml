@@ -6,23 +6,24 @@
 ' One or Many:  }|--
 
 entity Vehicle {
-  id: INTEGER
-  type: TEXT
-  name: TEXT
-  manufacturer: TEXT
-  model: TEXT
-  registration: TEXT
-  year: INTEGER
+  id: INTEGER!
+  type: TEXT?
+  name: TEXT?
+  manufacturer: TEXT?
+  model: TEXT?
+  registration: TEXT?
+  year: INTEGER?
 }
 
 entity Refuel {
-  id: INTEGER
-  vehicleId: INTEGER
-  station: TEXT
-  dateTime: TEXT
-  quantity: REAL
-  paid: REAL
-  distance: REAL
+  id INTEGER!
+  vehicleId: INTEGER!
+  station: TEXT!
+  dateTime: INTEGER!
+  quantity: REAL!
+  paid: REAL!
+  distance: REAL!
+  fullTank: INTEGER!
 }
 
 Refuel }o..|| Vehicle

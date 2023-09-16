@@ -6,6 +6,7 @@ import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refuel_db_helper.dart';
 import 'package:motolog/models/refuel.dart';
 import 'package:motolog/models/vehicle.dart';
+import 'package:motolog/widgets/checkbox_form_field.dart';
 
 class RefuelAddPage extends StatefulWidget {
   const RefuelAddPage({super.key, required this.vehicle});
@@ -25,6 +26,7 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
   final _quantityController = TextEditingController();
   final _paidController = TextEditingController();
   final _distanceController = TextEditingController();
+  bool fullTank = true;
 
   /// 0 = Editing
   /// 1 = Saving
@@ -43,6 +45,7 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
         quantity: double.parse(_quantityController.text),
         paid: double.parse(_paidController.text),
         distance: double.parse(_distanceController.text),
+        fullTank: fullTank,
       );
       if (kDebugMode) {
         print(refuel);
@@ -166,6 +169,18 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
                     }
                     return null;
                   },
+                ),
+                CheckboxFormField(
+                  title: const Text('Filled full tank?'),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  initialValue: fullTank,
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Please enter a value';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => fullTank = value ?? false,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),

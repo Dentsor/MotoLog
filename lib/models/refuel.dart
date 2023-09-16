@@ -12,6 +12,7 @@ class Refuel extends DataModel {
   double quantity;
   double paid;
   double distance;
+  bool fullTank;
 
   Refuel({
     this.id,
@@ -21,6 +22,7 @@ class Refuel extends DataModel {
     required this.quantity,
     required this.paid,
     required this.distance,
+    required this.fullTank,
   });
 
   Refuel.fromMap(Map<String, dynamic> res)
@@ -30,7 +32,8 @@ class Refuel extends DataModel {
       dateTime = DateTime.fromMillisecondsSinceEpoch(res['dateTime'] * Duration.millisecondsPerSecond),
       quantity = res['quantity'],
       paid = res['paid'],
-      distance = res['distance'];
+      distance = res['distance'],
+      fullTank = res['fullTank'] == 1;
 
   @override
   Map<String, Object?> toMap() {
@@ -42,6 +45,7 @@ class Refuel extends DataModel {
       'quantity': quantity,
       'paid': paid,
       'distance': distance,
+      'fullTank': fullTank,
     };
   }
 
