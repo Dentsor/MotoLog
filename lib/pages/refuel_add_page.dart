@@ -9,9 +9,10 @@ import 'package:motolog/models/vehicle.dart';
 import 'package:motolog/widgets/checkbox_form_field.dart';
 
 class RefuelAddPage extends StatefulWidget {
-  const RefuelAddPage({super.key, required this.vehicle});
+  const RefuelAddPage({super.key, required this.vehicle, required this.refuels});
 
   final Vehicle vehicle;
+  final List<Refuel> refuels;
 
   @override
   State<RefuelAddPage> createState() => _RefuelAddPageState();
@@ -26,7 +27,8 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
   final _quantityController = TextEditingController();
   final _paidController = TextEditingController();
   final _distanceController = TextEditingController();
-  bool fullTank = true;
+  bool filledToCapacity = true;
+  bool? missingPreviousEntry = null;
 
   /// 0 = Editing
   /// 1 = Saving
@@ -45,7 +47,8 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
         quantity: double.parse(_quantityController.text),
         paid: double.parse(_paidController.text),
         distance: double.parse(_distanceController.text),
-        fullTank: fullTank,
+        filledToCapacity: filledToCapacity,
+        missingPreviousEntry: missingPreviousEntry ?? widget.refuels.isEmpty,
       );
       if (kDebugMode) {
         print(refuel);
@@ -173,14 +176,26 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
                 CheckboxFormField(
                   title: const Text('Refueled to capacity'),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  initialValue: fullTank,
+                  initialValue: filledToCapacity,
                   validator: (value) {
                     if (value == null) {
                       return 'Please enter a value';
                     }
                     return null;
                   },
-                  onSaved: (value) => fullTank = value ?? false,
+                  onSaved: (value) => filledToCapacity = value ?? false,
+                ),
+                CheckboxFormField(
+                  title: const Text('Missing previous entry'),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  initialValue: widget.refuels.isEmpty,
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Please enter a value';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => missingPreviousEntry = value ?? false,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),

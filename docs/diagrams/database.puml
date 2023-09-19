@@ -23,7 +23,8 @@ entity Refuel {
   quantity: REAL!
   paid: REAL!
   distance: REAL!
-  fullTank: INTEGER!
+  filledToCapacity: INTEGER!
+  missingPreviousEntry: INTEGER!
 }
 
 Refuel }o..|| Vehicle

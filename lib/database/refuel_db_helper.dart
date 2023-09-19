@@ -12,18 +12,19 @@ extension RefuelDBHelper on DatabaseHelper {
                 quantity REAL NOT NULL,
                 paid REAL NOT NULL,
                 distance REAL NOT NULL,
-                fullTank INTEGER NOT NULL
+                filledToCapacity INTEGER NOT NULL,
+                missingPreviousEntry INTEGER NOT NULL
               )
             """;
   static List<Refuel> sampleData = [
-    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 06, 21, 11, 59), quantity: 2.79, paid: 35.68, distance: 60449, fullTank: true),
-    Refuel(vehicleId: 0, station: 'YX', dateTime: DateTime(2020, 06, 23, 11, 56), quantity: 6.67, paid: 101.32, distance: 60614, fullTank: true),
-    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 06, 23, 13, 45), quantity: 5.64, paid: 76.08, distance: 60734, fullTank: true),
-    Refuel(vehicleId: 0, station: 'YX', dateTime: DateTime(2020, 06, 23, 16, 28), quantity: 4.77, paid: 71.12, distance: 60860, fullTank: true),
-    Refuel(vehicleId: 0, station: 'Circle K', dateTime: DateTime(2020, 06, 23, 19, 51), quantity: 7.64, paid: 122.62, distance: 61037, fullTank: true),
-    Refuel(vehicleId: 0, station: 'YX', dateTime: DateTime(2020, 07, 20, 17, 50), quantity: 11.56, paid: 162.42, distance: 61270, fullTank: true),
-    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 07, 28, 16, 28), quantity: 10.87, paid: 172.72, distance: 61522, fullTank: true),
-    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 08, 01, 02, 06), quantity: 12.66, paid: 201.17, distance: 61801, fullTank: true),
+    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 06, 21, 11, 59), quantity: 2.79, paid: 35.68, distance: 60449, filledToCapacity: true, missingPreviousEntry: true),
+    Refuel(vehicleId: 0, station: 'YX', dateTime: DateTime(2020, 06, 23, 11, 56), quantity: 6.67, paid: 101.32, distance: 60614, filledToCapacity: true, missingPreviousEntry: false),
+    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 06, 23, 13, 45), quantity: 5.64, paid: 76.08, distance: 60734, filledToCapacity: true, missingPreviousEntry: false),
+    Refuel(vehicleId: 0, station: 'YX', dateTime: DateTime(2020, 06, 23, 16, 28), quantity: 4.77, paid: 71.12, distance: 60860, filledToCapacity: true, missingPreviousEntry: false),
+    Refuel(vehicleId: 0, station: 'Circle K', dateTime: DateTime(2020, 06, 23, 19, 51), quantity: 7.64, paid: 122.62, distance: 61037, filledToCapacity: true, missingPreviousEntry: false),
+    Refuel(vehicleId: 0, station: 'YX', dateTime: DateTime(2020, 07, 20, 17, 50), quantity: 11.56, paid: 162.42, distance: 61270, filledToCapacity: true, missingPreviousEntry: false),
+    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 07, 28, 16, 28), quantity: 10.87, paid: 172.72, distance: 61522, filledToCapacity: true, missingPreviousEntry: false),
+    Refuel(vehicleId: 0, station: 'Esso', dateTime: DateTime(2020, 08, 01, 02, 06), quantity: 12.66, paid: 201.17, distance: 61801, filledToCapacity: true, missingPreviousEntry: false),
   ];
 
   Future<int> insertRefuel(Refuel instance) async {

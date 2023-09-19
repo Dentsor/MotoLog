@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:motolog/utils/fuel.dart';
+import 'package:motolog/models/refuel.dart';
+import 'package:motolog/utils/refuel_utils.dart';
 
 class ConsumptionWidget extends StatelessWidget {
   const ConsumptionWidget({
     super.key,
-    required this.fuelData,
+    required this.refuels,
   });
 
-  final Fuel fuelData;
+  final List<Refuel> refuels;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class ConsumptionWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${fuelData.avgConsumptionAllTime.toStringAsFixed(2)} (all time)",
+              "${refuels.averageConsumption().toStringAsFixed(2)} (all time)",
             ),
             // Text("${fuelData.avgConsumptionLately.toStringAsFixed(2)} (12 months)"),
           ],
@@ -29,20 +30,11 @@ class ConsumptionWidget extends StatelessWidget {
       ]),
       TableRow(children: [
         const Text(
-          "Best fueling day on average:",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          "${fuelData.avgBestRefuelDay} (${fuelData.avgBestRefuelPrice})",
-        )
-      ]),
-      TableRow(children: [
-        const Text(
           "Avg. Refuel Quantity",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
-          "${fuelData.avgRefuelQuantity.toStringAsFixed(2)} ${fuelData.refuelUnit}",
+          "${refuels.averageRefuelQuantity().toStringAsFixed(2)} ${Refuel.fuelUnit}",
         ),
       ]),
     ];
