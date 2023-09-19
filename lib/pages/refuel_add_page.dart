@@ -171,7 +171,7 @@ class _RefuelAddPageState extends State<RefuelAddPage> {
                   },
                 ),
                 CheckboxFormField(
-                  title: const Text('Filled full tank?'),
+                  title: const Text('Refueled to capacity'),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   initialValue: fullTank,
                   validator: (value) {

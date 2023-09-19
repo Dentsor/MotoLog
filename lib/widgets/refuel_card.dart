@@ -11,50 +11,29 @@ class RefuelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      const Icon(Icons.location_pin),
-      Column(children: [
-        Text(
-          refuel.station,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Table(
-          border: TableBorder.all(),
-          children: [
-            TableRow(children: [
-              const Text(
-                "Time",
-                style: TextStyle(fontWeight: FontWeight.bold),
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Theme.of(context).primaryColor)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.location_pin),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                refuel.station,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text("${refuel.dateTime}"),
-            ]),
-            TableRow(children: [
-              const Text(
-                "Unit Price",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
               Text(
-                  "${(refuel.paid / refuel.quantity).toStringAsFixed(2)} ${Refuel.currency}/${Refuel.fuelUnit}"),
-            ]),
-            TableRow(children: [
-              const Text(
-                "Quantity",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text("${refuel.quantity} ${Refuel.fuelUnit}"),
-            ]),
-            TableRow(children: [
-              const Text(
-                'Distance',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text('${refuel.distance} ${Refuel.distanceUnit}'),
-            ]),
-          ],
-          defaultColumnWidth: const IntrinsicColumnWidth(),
-        ),
-      ]),
-      Text("${refuel.paid} ${Refuel.currency}"),
-    ]);
+                  "${refuel.quantity} ${Refuel.fuelUnit} @ ${(refuel.paid / refuel.quantity).toStringAsFixed(2)} ${Refuel.currency}/${Refuel.fuelUnit}"),
+              Text("${refuel.paid} ${Refuel.currency}"),
+              Text("${refuel.distance} ${Refuel.distanceUnit}"),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
