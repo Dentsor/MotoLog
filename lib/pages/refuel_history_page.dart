@@ -22,6 +22,12 @@ class _RefuelHistoryPageState extends State<RefuelHistoryPage> {
     return FutureBuilder(
         future: dbHelper.retrieveRefuels(),
         builder: (BuildContext context, AsyncSnapshot<List<Refuel>> snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString()); // TODO
+          }
           if (snapshot.hasData) {
             List<Refuel> refuels = snapshot.data!;
             refuels.sort((a, b) => b.dateTime.compareTo(a.dateTime));
@@ -34,14 +40,22 @@ class _RefuelHistoryPageState extends State<RefuelHistoryPage> {
                 child: SingleChildScrollView(
                   child: Table(
                     children: refuels
-                        .map((e) => TableRow(children: [RefuelCard(refuel: e)]))
+                        .map((e) => TableRow(children: [
+                              RefuelCard(
+                                refuel: e,
+                                onDelete: () async {
+                                  await dbHelper.deleteRefuel(e.id!);
+                                  setState(() {});
+                                },
+                              )
+                            ]))
                         .toList(),
                   ),
                 ),
               ),
             );
           }
-          return const Center(child: CircularProgressIndicator());
+          return const Text("No data"); // TODO
         });
   }
 }

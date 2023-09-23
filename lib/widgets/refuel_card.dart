@@ -5,9 +5,11 @@ class RefuelCard extends StatelessWidget {
   const RefuelCard({
     super.key,
     required this.refuel,
+    required this.onDelete,
   });
 
   final Refuel refuel;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,31 @@ class RefuelCard extends StatelessWidget {
               Text("${refuel.distance} ${Refuel.distanceUnit}"),
             ],
           ),
+          const Spacer(),
+          IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('Please confirm deletion'),
+                        content: Text(
+                            "Are you sure you want to delete the refueling at ${refuel.station} on ${refuel.dateTime} for ${refuel.paid} ${Refuel.currency}?"),
+                        actions: [
+                          IconButton(
+                              onPressed: () {
+                                onDelete();
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.check)),
+                          IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: const Icon(Icons.cancel)),
+                        ],
+                      );
+                    });
+              },
+              icon: const Icon(Icons.delete)),
         ],
       ),
     );

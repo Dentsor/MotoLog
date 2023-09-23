@@ -42,7 +42,7 @@ class MotoLog extends StatelessWidget {
     return MaterialApp(
       title: 'MotoLog',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
       home: FutureBuilder(
