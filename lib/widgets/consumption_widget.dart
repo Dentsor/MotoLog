@@ -31,7 +31,6 @@ class ConsumptionWidget extends StatelessWidget {
                     ? '-'
                     : '${avgConsumption.toStringAsFixed(2)} (all time)',
               ),
-              // Text('${fuelData.avgConsumptionLately.toStringAsFixed(2)} (12 months)'),
             ],
           ),
         ]),

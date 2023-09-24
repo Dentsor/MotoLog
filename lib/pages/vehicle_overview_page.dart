@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refuel_db_helper.dart';
@@ -24,9 +23,6 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
   late List<Refuel> refuels;
 
   void onPressed() {
-    if (kDebugMode) {
-      print("pressed");
-    }
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -34,9 +30,6 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
   }
 
   void onClicked() {
-    if (kDebugMode) {
-      print("clicked");
-    }
     Navigator.push(
         context,
         MaterialPageRoute(
@@ -50,7 +43,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
       builder: (BuildContext context, AsyncSnapshot<List<Refuel>> snapshot) {
         if (snapshot.hasData) {
           refuels = snapshot.data!;
-          refuels.sortByDateTime();
+          refuels.sortByDateTime(oldestFirst: true);
 
           return Scaffold(
             appBar: AppBar(
