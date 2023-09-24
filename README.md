@@ -2,15 +2,15 @@
 
 A vehicle maintenance helper.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# How to contribute
 
-A few resources to get you started if this is your first Flutter project:
+Clone/fork the project, make your suggested changes and open a pull request.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Conventions
+
+- Use single quotes (') for strings, except if double quotes are necessary for nested strings or strings were it would require escaping single quotes (like "it's" or "don't")
+- Use [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Add issue-reference at the end of the commit-message (ref. Convential Commits)
+- Assign issue or add comments when you're working on something
