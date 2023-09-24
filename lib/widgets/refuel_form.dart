@@ -6,7 +6,6 @@ import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refuel_db_helper.dart';
 import 'package:motolog/models/refuel.dart';
 import 'package:motolog/models/vehicle.dart';
-import 'package:motolog/utils/refuel_utils.dart';
 import 'package:motolog/widgets/checkbox_form_field.dart';
 
 class RefuelForm extends StatefulWidget {
@@ -71,7 +70,7 @@ class _RefuelEditForm extends State<RefuelForm> {
       _paidController =
           TextEditingController(text: widget.refuel!.paid.toString());
       _distanceController =
-          TextEditingController(text: widget.refuel!.paid.toString());
+          TextEditingController(text: widget.refuel!.distance.toString());
       _filledToCapacity = widget.refuel!.filledToCapacity;
       _missingPreviousEntry = widget.refuel!.missingPreviousEntry;
     }
