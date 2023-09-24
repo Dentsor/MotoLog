@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motolog/concepts/refuel_group.dart';
 import 'package:motolog/database/database_helper.dart';
 import 'package:motolog/database/refuel_db_helper.dart';
 import 'package:motolog/models/vehicle.dart';
@@ -7,6 +8,7 @@ import 'package:motolog/pages/refuel_add_page.dart';
 import 'package:motolog/pages/refuel_history_page.dart';
 import 'package:motolog/utils/refuel_utils.dart';
 import 'package:motolog/widgets/consumption_widget.dart';
+import 'package:motolog/widgets/refuel_consumption_chart.dart';
 import 'package:motolog/widgets/vehicle_card.dart';
 
 class VehicleOverviewPage extends StatefulWidget {
@@ -58,6 +60,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
                   VehicleCard(
                       vehicle: widget.vehicle, latestRefuel: refuels.isEmpty ? null : refuels.last),
                   ConsumptionWidget(refuels: refuels),
+                  RefuelConsumptionChart(refuelGroups: RefuelGroup.generate(refuels)),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: Row(
