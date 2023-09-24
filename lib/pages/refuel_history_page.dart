@@ -42,6 +42,7 @@ class _RefuelHistoryPageState extends State<RefuelHistoryPage> {
                     children: refuels
                         .map((e) => TableRow(children: [
                               RefuelCard(
+                                vehicle: widget.vehicle,
                                 refuel: e,
                                 onDelete: () async {
                                   await dbHelper.deleteRefuel(e.id!);

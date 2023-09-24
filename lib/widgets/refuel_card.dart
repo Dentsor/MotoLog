@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:motolog/models/refuel.dart';
+import 'package:motolog/models/vehicle.dart';
+import 'package:motolog/pages/refuel_edit_page.dart';
 
 class RefuelCard extends StatelessWidget {
   const RefuelCard({
     super.key,
+    required this.vehicle,
     required this.refuel,
     required this.onDelete,
   });
 
+  final Vehicle vehicle;
   final Refuel refuel;
   final VoidCallback onDelete;
 
@@ -41,7 +45,7 @@ class RefuelCard extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: const Text('Please confirm deletion'),
+                        title: const Text('Please confirm'),
                         content: Text(
                             "Are you sure you want to delete the refueling at ${refuel.station} on ${refuel.dateTime} for ${refuel.paid} ${Refuel.currency}?"),
                         actions: [
@@ -50,7 +54,7 @@ class RefuelCard extends StatelessWidget {
                                 onDelete();
                                 Navigator.pop(context);
                               },
-                              icon: const Icon(Icons.check)),
+                              icon: const Icon(Icons.check_circle)),
                           IconButton(
                               onPressed: () => Navigator.pop(context),
                               icon: const Icon(Icons.cancel)),
@@ -59,6 +63,15 @@ class RefuelCard extends StatelessWidget {
                     });
               },
               icon: const Icon(Icons.delete)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RefuelEditPage(
+                            vehicle: vehicle, refuel: refuel)));
+              },
+              icon: const Icon(Icons.edit)),
         ],
       ),
     );
