@@ -2,8 +2,8 @@ import 'package:motolog/models/refuel.dart';
 
 extension RefuelUtils on List<Refuel> {
   /// Sort by date time
-  void sort() {
-    this.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+  void sortByDateTime() {
+    sort((a, b) => b.dateTime.compareTo(a.dateTime));
   }
 
   /// NB: List must be sorted!

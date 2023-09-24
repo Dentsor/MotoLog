@@ -6,6 +6,7 @@ import 'package:motolog/models/vehicle.dart';
 import 'package:motolog/models/refuel.dart';
 import 'package:motolog/pages/refuel_add_page.dart';
 import 'package:motolog/pages/refuel_history_page.dart';
+import 'package:motolog/utils/refuel_utils.dart';
 import 'package:motolog/widgets/consumption_widget.dart';
 import 'package:motolog/widgets/vehicle_card.dart';
 
@@ -49,6 +50,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
       builder: (BuildContext context, AsyncSnapshot<List<Refuel>> snapshot) {
         if (snapshot.hasData) {
           refuels = snapshot.data!;
+          refuels.sortByDateTime();
 
           return Scaffold(
             appBar: AppBar(
@@ -61,7 +63,7 @@ class _VehicleOverviewPageState extends State<VehicleOverviewPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   VehicleCard(
-                      vehicle: widget.vehicle, latestRefuel: refuels.last),
+                      vehicle: widget.vehicle, latestRefuel: refuels.isEmpty ? null : refuels.last),
                   ConsumptionWidget(refuels: refuels),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),

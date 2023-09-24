@@ -31,11 +31,11 @@ class RefuelCard extends StatelessWidget {
                 refuel.station,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text("${refuel.dateTime}"),
+              Text('${refuel.dateTime}'),
               Text(
-                  "${refuel.quantity} ${Refuel.fuelUnit} @ ${(refuel.paid / refuel.quantity).toStringAsFixed(2)} ${Refuel.currency}/${Refuel.fuelUnit}"),
-              Text("${refuel.paid} ${Refuel.currency}"),
-              Text("${refuel.distance} ${Refuel.distanceUnit}"),
+                  '${refuel.quantity} ${Refuel.fuelUnit} @ ${(refuel.paid / refuel.quantity).toStringAsFixed(2)} ${Refuel.currency}/${Refuel.fuelUnit}'),
+              Text('${refuel.paid} ${Refuel.currency}'),
+              Text('${refuel.distance} ${Refuel.distanceUnit}'),
             ],
           ),
           const Spacer(),
@@ -47,7 +47,7 @@ class RefuelCard extends StatelessWidget {
                       return AlertDialog(
                         title: const Text('Please confirm'),
                         content: Text(
-                            "Are you sure you want to delete the refueling at ${refuel.station} on ${refuel.dateTime} for ${refuel.paid} ${Refuel.currency}?"),
+                            'Are you sure you want to delete the refueling at ${refuel.station} on ${refuel.dateTime} for ${refuel.paid} ${Refuel.currency}?'),
                         actions: [
                           IconButton(
                               onPressed: () {

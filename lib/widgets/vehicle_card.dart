@@ -10,7 +10,7 @@ class VehicleCard extends StatelessWidget {
   });
 
   final Vehicle vehicle;
-  final Refuel latestRefuel;
+  final Refuel? latestRefuel;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class VehicleCard extends StatelessWidget {
                 textScaleFactor: 1.4,
               ),
               Text(
-                "${vehicle.registration}, ${vehicle.year}, ${latestRefuel.distance} ${Refuel.distanceUnit}",
+                '${vehicle.registration}, ${vehicle.year}, ${latestRefuel?.distance ?? "-"} ${Refuel.distanceUnit}',
               ),
             ],
           ),
